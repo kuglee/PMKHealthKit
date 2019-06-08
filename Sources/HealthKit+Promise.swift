@@ -31,7 +31,8 @@ public extension HKStatisticsQuery {
 }
 
 public extension HKAnchoredObjectQuery {
-    static func promise(type: HKSampleType, predicate: NSPredicate? = nil, anchor: HKQueryAnchor? = nil, limit: Int = HKObjectQueryNoLimit, healthStore: HKHealthStore = .init()) -> Promise<([HKSample], [HKDeletedObject], HKQueryAnchor)> {
+  @available(iOS 9.0, *)
+  static func promise(type: HKSampleType, predicate: NSPredicate? = nil, anchor: HKQueryAnchor? = nil, limit: Int = HKObjectQueryNoLimit, healthStore: HKHealthStore = .init()) -> Promise<([HKSample], [HKDeletedObject], HKQueryAnchor)> {
         return Promise { seal in
             let query = HKAnchoredObjectQuery(type: type, predicate: predicate, anchor: anchor, limit: limit) {
                 if let a = $1, let b = $2, let c = $3 {
